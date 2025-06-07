@@ -1,4 +1,4 @@
-# Video Name to Date
+# Name to Date
 
 A Python utility to update video and image file modification dates based on their filenames. This is particularly useful for Google Pixel phone media files, which have filenames like `PXL_20240813_051351918.mp4` or `PXL_20240815_174155846.NIGHT.jpg` containing the date and time when the media was recorded.
 
@@ -15,32 +15,52 @@ A Python utility to update video and image file modification dates based on thei
 
 - Python 3.6 or higher
 
-### Setup
+### Installation from PyPI
+
+```bash
+pip install name2date
+```
+
+### Installation from Source
 
 1. Clone this repository or download the source files
+2. Navigate to the project directory
+3. Install the package
+
+```bash
+pip install .
+```
 
 ## Usage
 
 ### Basic Usage
 
+After installation, you can use the command-line tool:
+
 ```bash
-python main.py /path/to/media
+name2date /path/to/media
+```
+
+Alternatively, you can run the package as a module:
+
+```bash
+python -m name2date /path/to/media
 ```
 
 This will process all supported media files (video and image) in the specified directory, extracting date and time from filenames and updating the "Date Modified" attribute. By default, the datetime is interpreted as UTC.
 
 ### Verbose Output
 
-The script supports two levels of verbosity:
+The tool supports two levels of verbosity:
 
 ```bash
-python main.py /path/to/media -v
+name2date /path/to/media -v
 ```
 
 This will print information only about skipped files (files that don't match the expected patterns).
 
 ```bash
-python main.py /path/to/media -vv
+name2date /path/to/media -vv
 ```
 
 This will print detailed information about all files being processed, including which files are being processed and updated.
@@ -91,5 +111,5 @@ Examples of supported filenames:
 
 ## Example
 ```shell
-python main.py -vv ~/Movies/gphoto
+name2date -vv ~/Movies/gphoto
 ```

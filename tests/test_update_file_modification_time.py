@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test script for videoName2Date functionality.
+Test script for name2date functionality.
 This script creates sample filenames and demonstrates how the main script would process them.
 """
 
@@ -8,7 +8,7 @@ import os
 import tempfile
 import datetime
 import pytz
-from main import parse_filename, update_file_modification_time
+from name2date.core import parse_filename, update_file_modification_time
 
 def test_parse_filename():
     """Test the parse_filename function with various filenames."""
@@ -71,7 +71,7 @@ def main():
     test_update_file_modification_time()
 
     print("\nUsage example:")
-    print("python main.py /path/to/videos -v")
+    print("name2date /path/to/videos -v")
 
 if __name__ == "__main__":
     main()

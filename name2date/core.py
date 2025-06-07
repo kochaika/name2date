@@ -1,21 +1,13 @@
-#!/usr/bin/env python3
 """
-Script to update file modification dates based on their filenames.
+Core functionality for name2date.
 
-This script processes files with names in various formats:
-- PXL_YYYYMMDD_HHMMSSXXX.mp4 (and variations with suffixes like .NIGHT, .MP, .RESTORED, etc.)
-- PXL_YYYYMMDD_HHMMSSXXX(N).jpg (where N is a number)
-- PXL_YYYYMMDD_HHMMSSXXX_exported_0_TIMESTAMP.jpg
-- lv_0_YYYYMMDDHHMMSS.mp4
-
-It extracts the date and time information from the filename, and updates the file's
-'Date Modified' attribute accordingly. It supports timezone conversion.
+This module provides functions to extract date and time from filenames
+and update file modification times accordingly.
 """
 
 import os
 import re
 import glob
-import argparse
 from datetime import datetime, timezone
 
 def parse_filename(filename):
@@ -118,39 +110,3 @@ def process_directory(directory, verbose=0):
                 failure_count += 1
 
     return success_count, failure_count
-
-
-def main():
-    """Main function to parse arguments and process files."""
-    parser = argparse.ArgumentParser(
-        description="Update file modification dates based on their filenames."
-    )
-    parser.add_argument(
-        "directory", 
-        help="Directory containing files to process"
-    )
-    parser.add_argument(
-        "-v", "--verbose", 
-        help="Verbosity level: -v shows skipped files, -vv shows all processing details",
-        action="count",
-        default=0
-    )
-
-    args = parser.parse_args()
-
-    if not os.path.isdir(args.directory):
-        print(f"Error: '{args.directory}' is not a valid directory")
-        return
-
-    print(f"Processing directory: {args.directory}")
-    print("Expected timezone in the filenames: UTC\n")
-
-    success, failure = process_directory(args.directory, args.verbose)
-
-    print(f"\nSummary:")
-    print(f"  Successfully processed: {success} files")
-    print(f"  Failed or skipped: {failure} files")
-
-
-if __name__ == "__main__":
-    main()
