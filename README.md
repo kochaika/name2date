@@ -1,3 +1,6 @@
+[![PyPI version](https://img.shields.io/pypi/v/name2date)](https://pypi.org/project/name2date/)
+![License](https://img.shields.io/pypi/l/name2date)
+
 # Name to Date
 
 A Python utility to update video and image file modification dates based on their filenames. This is particularly useful for Google Pixel phone media files, which have filenames like `PXL_20240813_051351918.mp4` or `PXL_20240815_174155846.NIGHT.jpg` containing the date and time when the media was recorded.
